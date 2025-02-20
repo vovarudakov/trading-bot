@@ -8,13 +8,17 @@ import { AggTradeDto } from './dto/agg-trade.dto';
 export class BinanceClient {
   constructor(private readonly httpService: HttpService) {}
 
+  private readonly DEFAULT_LIMIT = 500;
+
   public async getHistoricalTrades(
+    symbol: string,
     startTime: number,
     endTime: number,
+    limit: number = this.DEFAULT_LIMIT,
   ): Promise<TradeDto[]> {
     const historicalData = await firstValueFrom(
       this.httpService.get<AggTradeDto[]>('api/v3/aggTrades', {
-        params: { endTime, startTime, limit: 100, symbol: 'BNBBTC' },
+        params: { startTime, endTime, limit, symbol },
       }),
     );
 
