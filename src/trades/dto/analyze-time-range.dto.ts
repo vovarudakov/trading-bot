@@ -1,4 +1,4 @@
-import { IsNumber, IsNumberString, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class AnalyzeTimeRangeDto {
   @IsString()
@@ -7,4 +7,6 @@ export class AnalyzeTimeRangeDto {
   readonly startTime: number;
   @IsNumber()
   readonly endTime: number;
+  @IsNumber()
+  readonly limit: number;
 }

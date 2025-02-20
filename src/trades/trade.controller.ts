@@ -12,6 +12,7 @@ export class TradeController {
       analyzeTimeRangeDto.symbol,
       analyzeTimeRangeDto.startTime,
       analyzeTimeRangeDto.endTime,
+      analyzeTimeRangeDto.limit,
     );
   }
 }

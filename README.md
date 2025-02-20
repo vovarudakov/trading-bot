@@ -72,6 +72,7 @@ Next steps:
 2. Write e2e and unit tests for services
 3. Improve data analytics e.g. introducing forecast
 4. Add API documentation tool e.g. OpenAPI
+5. Standardize error handling and error codes
 
 ## Project setup
 

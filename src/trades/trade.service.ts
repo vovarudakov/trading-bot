@@ -11,6 +11,7 @@ export class TradeService {
     symbol: string,
     startTime: number,
     endTime: number,
+    limit: number,
   ) {
     let historicalTrades: TradeDto[];
 
@@ -19,6 +20,7 @@ export class TradeService {
         symbol,
         startTime,
         endTime,
+        limit,
       );
     } catch (e) {
       throw new HttpException('Could not retrieve historic trades', e);
