@@ -69,7 +69,7 @@ Limit is restricted by Binance API `GET /api/v3/aggTrades`
 
 Next steps:
 1. Save aggregated data by time range into a database to avoid the API limits and/or memory load if needed to analyze data for a longer time period 
-2. Write e2e and unit tests for services
+2. Add unit tests for services and improve e2e tests
 3. Improve data analytics e.g. introducing forecast
 4. Add API documentation tool e.g. OpenAPI
 5. Standardize error handling and error codes
