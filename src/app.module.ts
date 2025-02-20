@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { TradeModule } from './trades/trade.module';
+import { BinanceClientModule } from './binance-client/binance-client.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule.forRoot(), TradeModule, BinanceClientModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
