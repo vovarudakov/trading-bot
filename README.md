@@ -73,6 +73,7 @@ Next steps:
 3. Improve data analytics e.g. introducing forecast
 4. Add API documentation tool e.g. OpenAPI
 5. Standardize error handling and error codes
+6. Add retries and fallback servers for Binance API
 
 ## Project setup
 
