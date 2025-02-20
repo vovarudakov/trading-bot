@@ -11,7 +11,7 @@ export class TradeService {
     symbol: string,
     startTime: number,
     endTime: number,
-    limit: number,
+    limit: number | undefined,
   ) {
     let historicalTrades: TradeDto[];
 
