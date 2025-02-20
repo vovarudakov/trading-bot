@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BinanceClient } from '../binance-client/binance.client';
 import * as _ from 'lodash';
 import { TradeDto } from '../binance-client/dto/trade.dto';
@@ -23,7 +23,10 @@ export class TradeService {
         limit,
       );
     } catch (e) {
-      throw new HttpException('Could not retrieve historic trades', e);
+      throw new HttpException(
+        'Could not retrieve historic trades',
+        HttpStatus.BAD_GATEWAY,
+      );
     }
 
     const tradeWithLowestPrice = _.minBy(historicalTrades, 'price');

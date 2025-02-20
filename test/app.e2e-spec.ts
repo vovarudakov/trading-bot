@@ -5,7 +5,7 @@ import { App } from 'supertest/types';
 import { AppModule } from '../src/app.module';
 import * as nock from 'nock';
 
-describe('AppController (e2e)', () => {
+describe('TradeController (e2e)', () => {
   let app: INestApplication<App>;
   const mockAggTradesResponse = [
     {
@@ -39,6 +39,10 @@ describe('AppController (e2e)', () => {
       M: true,
     },
   ];
+  const mockAggTradesError = {
+    code: -1121,
+    msg: 'Invalid symbol.',
+  };
   const mockAnalyzeResponse = {
     totalTrades: 3,
     priceDecreasedTotalTimes: 0,
@@ -137,6 +141,32 @@ describe('AppController (e2e)', () => {
         .set('Accept', 'application/json')
         .expect(200)
         .expect(mockAnalyzeResponse);
+    });
+
+    it('returns error when binance API is not responding', async () => {
+      nock('https://api.binance.com')
+        .get('/api/v3/aggTrades')
+        .query({
+          symbol: 'BNBBTC',
+          startTime: 1740060576444,
+          endTime: 1740060616692,
+          limit: 500,
+        })
+        .reply(400, mockAggTradesError);
+
+      return request(app.getHttpServer())
+        .post('/trades/analyze')
+        .send({
+          symbol: 'BNBBTC',
+          startTime: 1740060576444,
+          endTime: 1740060616692,
+        })
+        .set('Accept', 'application/json')
+        .expect(502)
+        .expect({
+          statusCode: 502,
+          message: 'Could not retrieve historic trades',
+        });
     });
   });
 });
